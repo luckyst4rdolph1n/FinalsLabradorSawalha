@@ -3,7 +3,7 @@
     It accesses the .wav file of the sounds and makes it possible for the program to use it.
 	
 	@author Zandalee Beck Q. Labrador (233393); Shamika Anne E. Sawalha (235724) 
-	@version 6 March 2024
+	@version 10 May 2024
 	
 	I have not discussed the Java language code in my program 
 	with anyone other than my instructor or the teaching assistants 

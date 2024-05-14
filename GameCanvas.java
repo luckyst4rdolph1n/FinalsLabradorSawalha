@@ -1,3 +1,22 @@
+/**
+	This GameCanvas class is for drawing the images.
+    It draws the playing field and the entities.
+	
+	@author Zandalee Beck Q. Labrador (233393); Shamika Anne E. Sawalha (235724) 
+	@version 3 May 2024
+	
+	I have not discussed the Java language code in my program 
+	with anyone other than my instructor or the teaching assistants 
+	assigned to this course.
+
+	I have not used Java language code obtained from another student, 
+	or any other unauthorized source, either modified or unmodified.
+
+	If any Java language code or documentation used in my program 
+	was obtained from another source, such as a textbook or website, 
+	that has been clearly noted with a proper citation in the comments 
+	of my program.
+**/
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -22,6 +41,18 @@ public class GameCanvas extends JComponent{
 
     private int FPS = 60;
 
+    /**
+     * constructor for the canvas
+     * @param w width
+     * @param h height
+     * @param plyr1 first player
+     * @param plyr2 second player
+     * @param bg1 the background
+     * @param platforms platforms
+     * @param breezies Breezy power ups
+     * @param chocies Chocy power ups
+     * @param flag finish line
+     */
     public GameCanvas(int w, int h, Player plyr1, Player plyr2, Background bg1, ArrayList<Platforms> platforms, ArrayList<Breezy> breezies, ArrayList<Chocy> chocies, Flag flag){
         width = w;
         height = h;
@@ -33,16 +64,11 @@ public class GameCanvas extends JComponent{
         this.chocies = chocies;
         this.flag = flag;
         this.setPreferredSize(new Dimension(width, height));
-        //player1 = new Player();
-        //enemy1 = new Enemy();
-        
-        //playerKey = new KeyHandler();
-
     }
 
-
-    
-
+    /**
+     * casts the graphics into Graphics 2D
+     */
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
 
@@ -67,11 +93,8 @@ public class GameCanvas extends JComponent{
             chocies.get(i).draw(g2d);
         }
 
-        
-
         player1.draw(g2d);
         player2.draw(g2d);
-        //enemy1.draw(g2d);
 
         g2d.dispose();
         
