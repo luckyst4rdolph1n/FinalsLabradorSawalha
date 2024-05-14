@@ -13,7 +13,7 @@ public class GameServer{
     private double p1x, p1y, p2x, p2y, b1x, b1y, b2x, b2y, b3x, b3y;
 
     public GameServer() {
-        System.out.println("GAME SERVER!!!");
+        System.out.println("=====GAME SERVER=====");
         numPlayers = 0;
         maxPlayers =2;
         p1x = 100;
@@ -90,12 +90,6 @@ public class GameServer{
         public void run(){
             try {
                 while (true){
-                    /*b1x = dataIn.readDouble();
-                    b1y = dataIn.readDouble();
-                    b2x = dataIn.readDouble();
-                    b2y = dataIn.readDouble();
-                    b3x = dataIn.readDouble();
-                    b3y = dataIn.readDouble();*/
                     if (playerID == 1){
                         p1x = dataIn.readDouble();
                         p1y = dataIn.readDouble();

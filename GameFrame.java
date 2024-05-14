@@ -131,12 +131,13 @@ chocies.add(c3);
 
 public void connectToServer(){
     try{
-        
         Scanner inp = new Scanner(System.in);
         System.out.print("IP Address: ");
         String host = inp.nextLine();
+        System.out.println("Enter port: ");
+        int portNum = Integer.parseInt(inp.nextLine());
         inp.close();
-        socket = new Socket(host, 45371);
+        socket = new Socket(host, portNum);
         DataInputStream in = new DataInputStream(socket.getInputStream());
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         playerID = in.readInt();
@@ -412,12 +413,5 @@ public void actions(){
     }
 }
 
-/*public static void main(String[] args) {
-    GameFrame gf = new GameFrame(800, 600);
-    gf.connectToServer();
-    gf.createPlayers();
-    gf.setUpGUI();
-}*/
-//}
 
 }
