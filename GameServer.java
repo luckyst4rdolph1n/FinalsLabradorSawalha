@@ -1,3 +1,23 @@
+/**
+	This GameServer class is the server of the game.
+    It sends and receives  corrdinates, allowing players to play simultaneously.
+	
+	@author Zandalee Beck Q. Labrador (233393); Shamika Anne E. Sawalha (235724) 
+	@version 3 May 2024
+	
+	I have not discussed the Java language code in my program 
+	with anyone other than my instructor or the teaching assistants 
+	assigned to this course.
+
+	I have not used Java language code obtained from another student, 
+	or any other unauthorized source, either modified or unmodified.
+
+	If any Java language code or documentation used in my program 
+	was obtained from another source, such as a textbook or website, 
+	that has been clearly noted with a proper citation in the comments 
+	of my program.
+**/
+
 import java.io.*;
 import java.net.*;
 
@@ -10,7 +30,11 @@ public class GameServer{
     private ReadFromClient p1ReadRunnable, p2ReadRunnable;
     private WriteToClient p1WriteRunnable, p2WriteRunnable;
 
-    private double p1x, p1y, p2x, p2y, b1x, b1y, b2x, b2y, b3x, b3y;
+    private double p1x, p1y, p2x, p2y;
+
+    /**
+     * constructor for GameServer
+     */
 
     public GameServer() {
         System.out.println("GAME SERVER!!!");
@@ -20,12 +44,6 @@ public class GameServer{
         p1y = 530;
         p2x = 300;
         p2y = 530;
-        b1x = 691;
-        b1y = 331;
-        b2x = 122;
-        b2y = 322;
-        b3x = 393;
-        b3y = 154;
 
         try{
             ss = new ServerSocket(45371); //not sure abt port number
@@ -33,6 +51,10 @@ public class GameServer{
             System.out.println("IOException from GameServer constructor");
         }
     }
+
+    /**
+     * allows two players to connect to the server
+     */
 
     public void acceptConnections() {
         try{
@@ -76,6 +98,10 @@ public class GameServer{
             }
     }
 
+    /**
+     * enables server to receive info about the client
+     */
+
     private class ReadFromClient implements Runnable{
 
         private int playerID;
@@ -90,12 +116,6 @@ public class GameServer{
         public void run(){
             try {
                 while (true){
-                    /*b1x = dataIn.readDouble();
-                    b1y = dataIn.readDouble();
-                    b2x = dataIn.readDouble();
-                    b2y = dataIn.readDouble();
-                    b3x = dataIn.readDouble();
-                    b3y = dataIn.readDouble();*/
                     if (playerID == 1){
                         p1x = dataIn.readDouble();
                         p1y = dataIn.readDouble();
@@ -109,6 +129,10 @@ public class GameServer{
             }
         }
     }
+
+    /**
+     * enables server to send info to the client
+     */
 
     private class WriteToClient implements Runnable{
 
@@ -124,12 +148,6 @@ public class GameServer{
         public void run(){
             try {
                 while(true){
-                    /*dataOut.writeDouble(b1x);
-                    dataOut.writeDouble(b1y);
-                    dataOut.writeDouble(b2x);
-                    dataOut.writeDouble(b2y);
-                    dataOut.writeDouble(b3x);
-                    dataOut.writeDouble(b3y);*/
                     if (playerID == 1){
                         dataOut.writeDouble(p2x);
                         dataOut.writeDouble(p2y);
@@ -150,6 +168,10 @@ public class GameServer{
             }
         }
 
+        /**
+         * when there are two players, the game will commence
+         */
+
         public void sendStartMsg(){
             try {
                 dataOut.writeUTF("We now have 2 Players, Go!");
@@ -159,6 +181,10 @@ public class GameServer{
         }
     }
 
+    /**
+     * main method
+     * @param args
+     */
     public static void main(String[] args) {
         GameServer gs = new GameServer();
         gs.acceptConnections();
